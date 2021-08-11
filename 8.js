@@ -2,6 +2,7 @@
 //которая одинаково читается слева направо и справа налево.
 
 function isPalindrome(value) {
-  let reversedString = value.split("").reverse().join("");
-  return value === reversedString;
+  let checkSpecial = value.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+  let reversedString = checkSpecial.split('').reverse().join('');
+  return reversedString === checkSpecial;
 }

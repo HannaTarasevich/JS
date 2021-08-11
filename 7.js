@@ -5,7 +5,7 @@
 function checkBusTour(bridges) {
   let busHeight = 512;
   for (let element of bridges) {
-    if (element <= busHeight) {
+    if (element < busHeight) {
       return bridges.indexOf(element);
     }
   }

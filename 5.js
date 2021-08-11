@@ -4,10 +4,10 @@
 //Параметр points — это массив строк.
 
 function getWinner(points) {
-  var finalCount1 = 0,
+  let finalCount1 = 0,
     finalCount2 = 0;
   for (let counter in points) {
-    let onePart = points[counter].split(":");
+    let onePart = points[counter].split(':');
     finalCount1 += Number(onePart[0]);
     finalCount2 += Number(onePart[1]);
   }

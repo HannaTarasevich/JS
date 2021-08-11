@@ -6,7 +6,7 @@ function getNumber() {
   Label: while (i <= n) {
     i++;
     for (let counter = 2; counter < i; counter++) {
-      if (i % counter == 0) continue Label;
+      if (i % counter === 0) continue Label;
     }
     console.log(i);
   }

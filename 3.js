@@ -4,12 +4,11 @@
 
 function divide(a, b) {
   if (b == 0) {
-    console.log("Division by zero is not allowed.");
+    console.log('Division by zero is not allowed.');
   } else if (isNaN(a) || isNaN(b) || !a || !b) {
-    console.log("Please, enter numbers only");
+    console.log('Please, enter numbers only');
   } else {
     let c = a / b;
-    console.log(c);
     return c;
   }
 }

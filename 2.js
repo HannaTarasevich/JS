@@ -1,8 +1,8 @@
 //2. Написать функцию printWords(n),  которая в зависимости от переданного в неё целочисленного аргумента n, будет выводить слово «огурец» в нужной форме («12 огурцов», но «22 огурца»).
 
 function printWords(n) {
-  let StringN = String(n);
-  let newArray = StringN.split("");
+  let stringN = String(n);
+  let newArray = stringN.split('');
   let lastArgument = newArray.length - 1;
   if (
     (n > 5 && n < 20) ||
