@@ -28,24 +28,10 @@ class complexNumber {
   }
 
   get exponential() {
-    var argument;
-    if (this._real > 0) {
-      argument = Math.atan(this._imaginary / this._real);
-    } else if (this._real < 0 && this._imaginary >= 0) {
-      argument = Math.PI + Math.atan(this._imaginary / this._real);
-    } else if (this._real < 0 && this._imaginary < 0) {
-      argument = -Math.PI + Math.atan(this._imaginary / this._real);
-    } else if (this._imaginary > 0) {
-      argument = Math.PI / 2;
-    } else if (this._real == 0 && this._imaginary < 0) {
-      argument = -Math.PI / 2;
-    }
+    let radians = this.argumentDegrees;
+    let r = this.module;
 
-    var r = Math.sqrt(
-      this._real * this._real + this._imaginary * this._imaginary
-    );
-
-    return `z = ${r} * e ** i ** ${argument}`;
+    return `z = ${r} * e ** i ** ${radians}`;
   }
 
   get module() {
@@ -55,7 +41,7 @@ class complexNumber {
   }
 
   get argumentRadians() {
-    var argument;
+    let argument;
     if (this._real > 0) {
       argument = Math.atan(this._imaginary / this._real);
     } else if (this._real < 0 && this._imaginary >= 0) {
@@ -77,9 +63,9 @@ class complexNumber {
 
   addition(number) {
     let array = number.split('+');
-    var a = this._real;
-    var b = this._imaginary;
-    var c, d;
+    let a = this._real;
+    let b = this._imaginary;
+    let c, d;
 
     if (array[0].includes('i')) {
       c = Number(array[1]);
@@ -88,16 +74,24 @@ class complexNumber {
       c = Number(array[0]);
       d = Number(array[1].trim().split('i')[0]);
     }
-    var imaginaryResult = b + d + 'i';
-    var realResult = a + c;
-    return `z = ${realResult} + ${imaginaryResult}`;
+    let imaginaryResult = b + d + 'i';
+    let realResult = a + c;
+    if (realResult === 0 && imaginaryResult === '0i') {
+      return 'z = 0';
+    } else if (realResult === 0 && imaginaryResult !== '0i') {
+      return `z = ${imaginaryResult}`;
+    } else if (realResult !== 0 && imaginaryResult === '0i') {
+      return `z = ${realResult}`;
+    } else if (realResult !== 0 && imaginaryResult !== '0i') {
+      return `z = ${realResult} + ${imaginaryResult}`;
+    }
   }
 
   subtraction(number) {
     let array = number.split('+');
-    var a = this._real;
-    var b = this._imaginary;
-    var c, d;
+    let a = this._real;
+    let b = this._imaginary;
+    let c, d;
 
     if (array[0].includes('i')) {
       c = Number(array[1]);
@@ -106,16 +100,16 @@ class complexNumber {
       c = array[0];
       d = array[1].trim().split('i')[0];
     }
-    var imaginaryResult = b - d + 'i';
-    var realResult = a - c;
+    let imaginaryResult = b - d + 'i';
+    let realResult = a - c;
     return `z = ${realResult} + ${imaginaryResult}`;
   }
 
   multiplication(number) {
     let array = number.split('+');
-    var a = this._real;
-    var b = this._imaginary;
-    var c, d;
+    let a = this._real;
+    let b = this._imaginary;
+    let c, d;
 
     if (array[0].includes('i')) {
       c = Number(array[0].split('i')[0]);
@@ -125,9 +119,17 @@ class complexNumber {
       d = array[0];
     }
 
-    var imaginaryResult = a * c + b * d + 'i';
-    var realResult = a * d - b * c;
-    return `z = ${realResult} + ${imaginaryResult}`;
+    let imaginaryResult = a * c + b * d + 'i';
+    let realResult = a * d - b * c;
+    if (realResult === 0 && imaginaryResult === '0i') {
+      return 'z = 0';
+    } else if (realResult === 0 && imaginaryResult !== '0i') {
+      return `z = ${imaginaryResult}`;
+    } else if (realResult !== 0 && imaginaryResult === '0i') {
+      return `z = ${realResult}`;
+    } else if (realResult !== 0 && imaginaryResult !== '0i') {
+      return `z = ${realResult} + ${imaginaryResult}`;
+    }
   }
 
   division(number) {
@@ -136,9 +138,9 @@ class complexNumber {
       return 'Division by zero is prohibited.';
     }
     let array = number.split('+');
-    var a = this._real;
-    var b = this._imaginary;
-    var c, d;
+    let a = this._real;
+    let b = this._imaginary;
+    let c, d;
     if (array[0].includes('i') && number != 0 && number != null) {
       c = Number(array[1]);
       d = Number(array[0].trim().split('i')[0]);
@@ -146,9 +148,16 @@ class complexNumber {
       c = Number(array[0]);
       d = Number(array[1].trim().split('i')[0]);
     }
-    var realResult = (a * c + b * d) / (c ** 2 + d ** 2);
-    var imaginaryResult = (b * c - a * d) / (c ** 2 + d ** 2) + 'i';
-    console.log(`z = ${realResult} + ${imaginaryResult}`);
-    return `z = ${realResult} + ${imaginaryResult}`;
+    let realResult = (a * c + b * d) / (c ** 2 + d ** 2);
+    let imaginaryResult = (b * c - a * d) / (c ** 2 + d ** 2) + 'i';
+    if (realResult === 0 && imaginaryResult === '0i') {
+      return 'z = 0';
+    } else if (realResult === 0 && imaginaryResult !== '0i') {
+      return `z = ${imaginaryResult}`;
+    } else if (realResult !== 0 && imaginaryResult === '0i') {
+      return `z = ${realResult}`;
+    } else if (realResult !== 0 && imaginaryResult !== '0i') {
+      return `z = ${realResult} + ${imaginaryResult}`;
+    }
   }
 }
