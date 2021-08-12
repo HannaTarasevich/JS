@@ -5,5 +5,5 @@ function getFibonacci(n) {
   for (let counter = 2; counter <= n; counter++) {
     fiArray.push(fiArray[counter - 1] + fiArray[counter - 2]);
   }
-  return fiArray[n - 1];
+  return fiArray[n];
 }
